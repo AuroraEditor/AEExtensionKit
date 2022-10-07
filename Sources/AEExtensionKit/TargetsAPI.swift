@@ -2,7 +2,7 @@
 //  TargetsAPI.swift
 //  
 //
-//  Created by Pavel Kasila on 27.03.22.
+//  Created by Wesley de Groot on 07/10/2022.
 //
 
 import Foundation
