@@ -23,14 +23,14 @@ public protocol ExtensionInterface {
     /// - Parameters:
     ///   - file: file path
     ///   - contents: file contents
-    func didOpen(file: String, contents: String)
+    func didOpen(file: String, contents: Data)
 
     /// did open file in workspace
     /// - Parameters:
     ///   - workspace: workspace name
     ///   - file: file path
     ///   - contents: file contents
-    func didOpen(workspace: String, file: String, contents: String)
+    func didOpen(workspace: String, file: String, contents: Data)
 
     /// did close file
     /// - Parameter file: file path
@@ -89,8 +89,8 @@ public protocol ExtensionInterface {
 
 public extension ExtensionInterface {
     // MARK: Editor (read)
-    func didOpen(workspace: String, file: String, contents: String) {}
-    func didOpen(file: String, contents: String) {}
+    func didOpen(workspace: String, file: String, contents: Data) {}
+    func didOpen(file: String, contents: Data) {}
     func didClose(file: String) {}
     func didSave(file: String) {}
     func didMoveCaret(row: Int, column: Int) {}
