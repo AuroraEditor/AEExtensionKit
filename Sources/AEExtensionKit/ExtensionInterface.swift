@@ -85,6 +85,9 @@ public protocol ExtensionInterface {
 
     // MARK: Webview
     func createWebviewPanel(contents: String)
+
+    // MARK: Supports
+    func supports(function: String) -> Bool
 }
 
 public extension ExtensionInterface {
@@ -128,6 +131,40 @@ public extension ExtensionInterface {
 
     // MARK: Webview
     func createWebviewPanel(contents: String) {}
+
+    func supports(function: String) -> Bool {
+        return [
+            "didOpen",
+            "didClose",
+            "didSave",
+            "didMoveCaret",
+            "activated",
+            "deactivated",
+            "didInsert",
+            "didReplace",
+            "didRemove",
+            "openFile",
+            "closeFile",
+            "moveCaret",
+            "willClose",
+            "willSave",
+            "navigator",
+            "inspector",
+            "showInformation",
+            "showWarning",
+            "showError",
+            "openSettings",
+            "openExtensionSettings",
+            "openModal",
+            "closeModel",
+            "register",
+            "deregister",
+            "register",
+            "deregister",
+            "createWebviewPanel",
+            "supports"
+        ].contains(function)
+    }
 }
 
 open class ExtensionBuilder: NSObject {
