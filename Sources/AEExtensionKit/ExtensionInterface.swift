@@ -46,13 +46,13 @@ public protocol ExtensionInterface {
     ///   - column: column
     func didMoveCaret(row: Int, column: Int)
 
-    /// activated file tab
+    /// did activate tab
     /// - Parameter file: file path
-    func activated(file: String)
+    func didActivateTab(file: String)
 
-    /// deactivated file tab
+    /// did deactivate file tab
     /// - Parameter file: file path
-    func deactivated(file: String)
+    func didDeactivateTab(file: String)
     func didInsert(text: String, position: TextLocation)
     func didReplace(text: String, with: String, position: TextLocation)
     func didRemove(text: String, position: TextLocation)
@@ -65,13 +65,13 @@ public protocol ExtensionInterface {
     func willSave(file: String, closure: () -> Bool)
 
     // MARK: User Interface (read)
-    func navigator(opened: Bool)
-    func inspector(opened: Bool)
+    func didOpenNavigatorPane(opened: Bool)
+    func didOpenInspectorPane(opened: Bool)
+
+    // MARK: User Interface (interaction)
     func showInformation(message: String)
     func showWarning(message: String)
     func showError(message: String)
-
-    // MARK: User Interface (interaction)
     func openSettings()
     func openExtensionSettings()
 //    func openModal(contents: ModelContents)
@@ -97,8 +97,8 @@ public extension ExtensionInterface {
     func didClose(file: String) {}
     func didSave(file: String) {}
     func didMoveCaret(row: Int, column: Int) {}
-    func activated(file: String) {}
-    func deactivated(file: String) {}
+    func didActivateTab(file: String) {}
+    func didDeactivateTab(file: String) {}
     func didInsert(text: String, position: TextLocation) {}
     func didReplace(text: String, with: String, position: TextLocation) {}
     func didRemove(text: String, position: TextLocation) {}
@@ -111,8 +111,8 @@ public extension ExtensionInterface {
     func willSave(file: String, closure: () -> Bool) {}
 
     // MARK: User Interface (read)
-    func navigator(opened: Bool) {}
-    func inspector(opened: Bool) {}
+    func didOpenNavigatorPane(opened: Bool) {}
+    func didOpenInspectorPane(opened: Bool) {}
     func showInformation(message: String) {}
     func showWarning(message: String) {}
     func showError(message: String) {}
@@ -133,13 +133,28 @@ public extension ExtensionInterface {
     func createWebviewPanel(contents: String) {}
 
     func supports(function: String) -> Bool {
+        if [
+            "didOpen:file:contents",
+            "didOpen:contents",
+            "didClose:"
+        ].contains(function) {
+            return true
+        }
+
+        // TODO: LEGACY (remove)
+        dump([
+            "Warning, using LEGACY supports function, please use Obj-C Selector style",
+            "E.G. didOpen(workspace: String, file: String, contents: Data)",
+            "becomes didOpen:file:contents:"
+            ])
+
         return [
             "didOpen",
             "didClose",
             "didSave",
             "didMoveCaret",
-            "activated",
-            "deactivated",
+            "didActivateTab",
+            "didDeactivateTab",
             "didInsert",
             "didReplace",
             "didRemove",
@@ -148,8 +163,8 @@ public extension ExtensionInterface {
             "moveCaret",
             "willClose",
             "willSave",
-            "navigator",
-            "inspector",
+            "didOpenNavigatorPane",
+            "didOpenInspectorPane",
             "showInformation",
             "showWarning",
             "showError",
