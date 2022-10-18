@@ -21,17 +21,7 @@ public protocol ExtensionInterface {
     ///
     /// - Note: if no value is provided your plugin will not load!
     /// - Returns: ExtensionManifest
-    func register() -> ExtensionManifest
-}
-
-public extension ExtensionInterface {
-    func respond(action: String, parameters: [String: Any]) -> Bool {
-        return true
-    }
-
-    func register() -> ExtensionManifest? {
-        return nil
-    }
+//    func register() -> ExtensionManifest
 }
 
 open class ExtensionBuilder: NSObject {

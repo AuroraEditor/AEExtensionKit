@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct ExtensionManifest: Codable, Hashable {
+public struct ExtensionManifest: Codable {
     public var name: String
     public var displayName: String
     public var version: String
