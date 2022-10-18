@@ -88,6 +88,7 @@ public protocol ExtensionInterface {
 
     // MARK: Supports
     func supports(function: String) -> Bool
+    func respond(action: String, parameters: [String: Any]) -> Bool
 }
 
 public extension ExtensionInterface {
@@ -131,6 +132,9 @@ public extension ExtensionInterface {
 
     // MARK: Webview
     func createWebviewPanel(contents: String) {}
+    func respond(action: String, parameters: [String: Any]) -> Bool {
+        return true
+    }
 
     func supports(function: String) -> Bool {
         if [
