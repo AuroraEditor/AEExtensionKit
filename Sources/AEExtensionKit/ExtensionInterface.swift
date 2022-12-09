@@ -7,7 +7,7 @@
 
 import Foundation
 
-public typealias AuroraAPI = (String, [String: Any]) -> Bool
+public typealias AuroraAPI = (String, [String: Any])
 
 /// A protocol for extensions to conform to
 public protocol ExtensionInterface {
