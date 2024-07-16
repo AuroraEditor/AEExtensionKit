@@ -17,7 +17,7 @@ public protocol ExtensionInterface {
     ///   - action: action to respond to
     ///   - parameters: parameters
     /// - Returns: should continue
-    func respond(action: String, parameters: [String: Any]) -> Bool
+    func respond(action: String, parameters: [String: Any]) -> Any
 
     /// Register your extension.
     ///
